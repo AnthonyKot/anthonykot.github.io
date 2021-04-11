@@ -14,15 +14,8 @@
       var socialLinks = socialHideout.innerHTML
       var projectLinks = projectHideout.innerHTML
 
-      console.log(socialLinks)
-      console.log(projectLinks)
-
       socialLinks = JSON.parse(socialLinks)
       projectLinks = JSON.parse(projectLinks)
-      console.log(socialLinks)
-      console.log(projectLinks)
-
-
 
       for (var i=0; i<socialLinks.length; i++){
           var button = document.createElement('button')
@@ -97,7 +90,6 @@
 
       var createButton = document.getElementById('createButton');
       createButton.onclick = function() {
-          console.log('clicked!')
           window.location = '/'
       }
       var shareButton = document.getElementById('shareButton');
@@ -178,17 +170,11 @@ Kanban.","tag":"software"}]</div>
 
     <br>
     <script>
-        console.log("Script working!")
-
-
         var name = 'Anton Kot';
         var firstName = name.split(' ')[0]
-        console.log(firstName)
-        document.title = `${firstName}'s Quarantine Resume`
 
         const resumeHeading = document.getElementById('titleText')
         resumeHeading.innerHTML = `${firstName}'s Quarantine Resume`
-
     </script>
     <script src="github-cv_bestanden/resumeView.js"></script>
 
