@@ -1,25 +1,194 @@
 <!DOCTYPE html>
-  <head>
-  	<title>HTML and CSS "Hello World"</title>
-  	<style>
-  		body {
-  			background-color: #2D2D2D;
-  		}
+<!-- saved from url=(0045)https://www.quarantineresu.me/javajssqlpython -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anton's Quarantine Resume</title>
+    <link href="https://www.quarantineresu.me/css/close.css" type="text/css">
+    <link rel="stylesheet" href="github-cv_bestanden/wingcss.txt">
+    <link rel="stylesheet" href="github-cv_bestanden/blocks.css">
+    <script type="text/javascript">
+      var socials = document.getElementById('socials')
+      var projects = document.getElementById('projects')
 
-  		h1 {
-  			color: #C26356;
-  			font-size: 30px;
-  			font-family: Menlo, Monaco, fixed-width;
-  		}
+      const socialHideout = document.getElementById('socialHideout')
+      const projectHideout = document.getElementById('projectHideout')
 
-  		p {
-  			color: white;
-  			font-family: "Source Code Pro", Menlo, Monaco, fixed-width;
-  		}
-  	</style>
-  </head>
-  <body>
-  	<h1>Hello World Example</h1>
-  	<p>This is a very basic "Hello World" example made up in HTML and CSS. See if you can change the size of the header text above.</p>
-  </body>
-</html>
+      var socialLinks = socialHideout.innerHTML
+      var projectLinks = projectHideout.innerHTML
+
+      console.log(socialLinks)
+      console.log(projectLinks)
+
+      socialLinks = JSON.parse(socialLinks)
+      projectLinks = JSON.parse(projectLinks)
+      console.log(socialLinks)
+      console.log(projectLinks)
+
+
+
+      for (var i=0; i<socialLinks.length; i++){
+          var button = document.createElement('button')
+          button.className='outline'
+          button.type='button'
+          button.style ="height:50px; margin-bottom:0px; overflow:visible; position:relative; font-weight:bold; margin-left:3px; margin-right:8px; font-size:larger"
+
+          var social = document.createElement('a')
+          var namess = document.createTextNode(socialLinks[i]['name'])
+
+          social.appendChild(namess)
+          social.href=socialLinks[i].link
+          social.target='_blank'
+
+
+          button.appendChild(social)
+
+          socials.appendChild(button)
+      }
+
+
+      for( var j=0; j<projectLinks.length; j++){
+
+          var project = document.createElement('div')
+          project.className ='block fixed'
+          project.style='display:inline-block; padding:30px;'
+
+          var projectName = document.createElement('H4')
+          projectName.className='title'
+          projectName.style='margin-top:0px; margin-bottom:0px; font-weight:bold'
+          var nameText = document.createTextNode(projectLinks[j]['name'])
+          projectName.appendChild(nameText)
+
+          if(projectLinks[j]['link']!=""){
+              var cardLink = document.createElement('a')
+              cardLink.className='title'
+              cardLink.style='margin-top:0px; margin-bottom:0px;'
+              var linkElement = document.createElement('H5')
+              var linkText = document.createTextNode('Link to project')
+              linkElement.className='title'
+              linkElement.style='margin-top:0px; margin-bottom:0px;'
+              linkElement.appendChild(linkText)
+              cardLink.appendChild(linkElement)
+              cardLink.href = projectLinks[j]['link']
+              cardLink.target='_blank'
+          }
+
+          var description = document.createElement('H5')
+          description.className='title'
+          description.style='margin-top:0px; margin-bottom:0px;'
+          var descriptionText = document.createTextNode(projectLinks[j].description)
+          description.appendChild(descriptionText)
+
+          var tag = document.createElement('H5')
+          tag.className='title'
+          tag.style='margin-top:0px; margin-bottom:0px; color:blue'
+          var tagText = document.createTextNode(`Tags: ${projectLinks[j].tag}`)
+          tag.appendChild(tagText)
+
+
+          project.appendChild(projectName)
+          if(projectLinks[j]['link']!=''){
+              project.appendChild(cardLink)
+          }
+          project.appendChild(description)
+          project.appendChild(tag)
+
+          projects.appendChild(project)
+
+      }
+
+
+      var createButton = document.getElementById('createButton');
+      createButton.onclick = function() {
+          console.log('clicked!')
+          window.location = '/'
+      }
+      var shareButton = document.getElementById('shareButton');
+      shareButton.onclick = function(){
+          var dummy = document.createElement('input'),
+          text = window.location.href;
+
+          document.body.appendChild(dummy);
+          dummy.value = text;
+          dummy.select();
+          document.execCommand('copy');
+          document.body.removeChild(dummy);
+          shareButton.innerHTML = 'Link Copied!';
+          setTimeout(() =>shareButton.innerHTML="Share This Resume!",800);
+      }
+    </script>
+    <style>
+    body{--block-text-color:#222;--block-background-color:#fff;--block-accent-color:#00ae86;--block-shadow-color:#444}.block{display:block;color:var(--block-text-color);border:3px solid var(--block-text-color);border-radius:3px;padding:4px 8px;background:var(--block-background-color);font-weight:700;cursor:pointer;box-sizing:border-box;position:relative;top:-2px;left:-2px;transition:transform .2s;margin:8px 6px 10px;z-index:1;user-select:none;-webkit-user-select:none;-moz-user-select:none}.block.wrapper,.block.wrapper.inline{display:inline-block;padding:0}.block.wrapper>*{margin:0}.block:before{content:"";background:var(--block-background-color);border:3px solid var(--block-text-color);border-radius:3px;box-sizing:border-box;position:absolute;top:-3px;left:-3px;height:calc(100% + 6px);width:calc(100% + 6px);z-index:-1}.block:focus,.block:hover{transform:translate(2px,2px)}.block:after{content:"";display:block;box-sizing:border-box;background:var(--block-shadow-color);border:3px solid var(--block-text-color);border-radius:3px;height:calc(100% + 6px);width:calc(100% + 6px);position:absolute;top:3px;left:3px;right:0;z-index:-2;transition:transform .2s}.block:focus:after,.block:hover:after{transform:translate(-2px,-3px)}.block:active{color:var(--block-text-color);transform:translate(3px,3px)}.block:active:after{transform:translate(-4px,-4px)}.block:focus{outline:none}.block.fixed{cursor:auto}.block.fixed:active,.block.fixed:active:after,.block.fixed:active:before,.block.fixed:focus,.block.fixed:focus:after,.block.fixed:focus:before,.block.fixed:hover,.block.fixed:hover:after,.block.fixed:hover:before{transform:none}.block.accent{color:var(--block-background-color)}.block.accent,.block.accent:before{background:var(--block-accent-color)}.block.inline{display:inline-block;font-size:.75em;padding:0 6px;margin:3px 2px 1px 4px}.block.inline:after{top:-1px;left:-1px}.block.inline:focus,.block.inline:hover{transform:translate(1px,1px)}.block.inline:focus:after,.block.inline:hover:after{transform:translate(-1px,-1px)}.block.inline:active{transform:translate(2px,2px)}.block.round,.block.round:after,.block.round:before{border-radius:30px}.block.round:after{left:1px}
+    /*# sourceMappingURL=blocks.min.css.map */
+    </style>
+</head>
+<body style="background-color: #a2dbff;">
+
+    <br>
+
+    <div class="block fixed" style="position:relative;
+    z-index: 1;
+    height: 100%;
+    min-width: 50px;
+    max-width: 1000px;
+    margin: 0 auto;">
+
+        <h1 id="titleText" class="title" style="text-align:center">Anton's Quarantine Resume</h1>
+        <br>
+        <form style="margin-left:10%; margin-right:10%">
+            <label>Full Name:</label>
+            <h4 id="name" style="margin-top: 10px; margin-bottom:10px;">Anton Kot</h4>
+            <label>Bio:</label>
+            <h4 id="bio" style="margin-top: 10px; margin-bottom:10px;">
+                Fullstack developer works for one of the largest European banks
+            </h4>
+
+
+            <label id="socialLabel">More info:</label>
+            <div id="socials"><button class="outline" type="button" style="height: 50px; margin-bottom: 0px; overflow: visible; position: relative; font-weight: bold; margin-left: 3px; margin-right: 8px; font-size: larger;"><a href="https://www.linkedin.com/in/anton-kot" target="_blank">Linkedin</a></button></div>
+
+            <div id="socialHideout" style="display: none;">[{"name":"Linkedin","link":"https://www.linkedin.com/in/anton-kot"}]</div>
+            <br>
+
+            <label id="projectLabel">Stuff done:</label>
+            <div id="projects"><div class="block fixed" style="display: inline-block; padding: 30px;"><h4 class="title" style="margin-top: 0px; margin-bottom: 0px; font-weight: bold;">ING Bank NL</h4><a class="title" href="https://www.ing.com/" target="_blank" style="margin-top: 0px; margin-bottom: 0px;"><h5 class="title" style="margin-top: 0px; margin-bottom: 0px;">Link to company</h5></a><h5 class="title" style="margin-top: 0px; margin-bottom: 0px;">In-house green field project is deployed to Private Cloud</h5><h5 class="title" style="margin-top: 0px; margin-bottom: 0px; color: blue;">Tags: enterprise, banking</h5></div><div class="block fixed" style="display: inline-block; padding: 30px;"><h4 class="title" style="margin-top: 0px; margin-bottom: 0px; font-weight: bold;">EPAM Systems</h4><a class="title" href="https://www.epam.com/" target="_blank" style="margin-top: 0px; margin-bottom: 0px;"><h5 class="title" style="margin-top: 0px; margin-bottom: 0px;">Link to company</h5></a><h5 class="title" style="margin-top: 0px; margin-bottom: 0px;">Design and develop new micro-services for the media back office platform using Dropwizard, Netflix Tech Stack, Docker, k8s</h5><h5 class="title" style="margin-top: 0px; margin-bottom: 0px; color: blue;">Tags: outsource, outstaff</h5></div><div class="block fixed" style="display: inline-block; padding: 30px;"><h4 class="title" style="margin-top: 0px; margin-bottom: 0px; font-weight: bold;">Sabre Corporation</h4><a class="title" href="https://www.sabre.com/" target="_blank" style="margin-top: 0px; margin-bottom: 0px;"><h5 class="title" style="margin-top: 0px; margin-bottom: 0px;">Link to company</h5></a><h5 class="title" style="margin-top: 0px; margin-bottom: 0px;">Java, JavaScript software development in distributed team with Kanban</h5><h5 class="title" style="margin-top: 0px; margin-bottom: 0px; color: blue;">Tags: product, sales</h5></div></div>
+            <div id="projectHideout" style="display: none;">
+[{"name":"ING Bank
+NL","link":"https://www.ing.com/","description":"In-house green field
+project is deployed to Private Cloud.","tag":"software"},{"name":"EPAM
+Systems","link":"https://www.epam.com/","description":"Design and
+develop new micro-services for the media back office platform using
+Dropwizard, Netflix Tech Stack, Docker,
+k8s","tag":"software"},{"name":"Sabre
+Corporation","link":"https://www.sabre.com/","description":"Java,
+JavaScript software development in distributed team with
+Kanban.","tag":"software"}]</div>
+            <br>
+
+
+            <br>
+
+
+
+
+        </form>
+
+        <br>
+    </div>
+
+    <br>
+    <script>
+        console.log("Script working!")
+
+
+        var name = 'Anton Kot';
+        var firstName = name.split(' ')[0]
+        console.log(firstName)
+        document.title = `${firstName}'s Quarantine Resume`
+
+        const resumeHeading = document.getElementById('titleText')
+        resumeHeading.innerHTML = `${firstName}'s Quarantine Resume`
+
+    </script>
+    <script src="github-cv_bestanden/resumeView.js"></script>
+
+</body></html>
